@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/config
 /lp-framework
 /_lp-framework
 /0lp-framework

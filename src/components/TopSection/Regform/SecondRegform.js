@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import IntlTelInput from 'react-intl-tel-input'
 import logo from '../Header/images/logo.png'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import 'react-intl-tel-input/dist/main.css'
 
 export default class SecondRegform extends Component {
@@ -30,16 +30,20 @@ export default class SecondRegform extends Component {
             checkParams = this.props.validateParams(form)
 
         if (checkParams.success) this.setState({loading: true, errors: {}}, () => {
-            this.props.setLeadData(form).then(this.props.handleSubmit).then(res => {if (!res.success) this.setState({redirect: true})})
+            this.props.setLeadData(form)
+                .then(this.props.handleSubmit)
+                .then(res => (res.redirectUrl) ? window.location = res.redirectUrl : this.setState({responseError: res.error}))
         })
         else this.setState({errors: checkParams.errors, loading: false})
     }
 
     render() {
         let languageManager = this.props.languageManager(),
-            errorMsgs = (this.state.errors) ? Object.keys(this.state.errors).map(key => { if (this.state.errors[key].messages) return this.state.errors[key].messages }).filter(value => value) : []
+            errorMsgs = (this.state.errors) ? Object.keys(this.state.errors).map(key => {
+                if (this.state.errors[key].messages) return this.state.errors[key].messages
+            }).filter(value => value) : []
 
-        if (!this.state.redirect) {
+        if (!this.state.loading) {
             return (
                 <div className="SecondRegform Regform startFrom">
                     <div className="inner">
@@ -81,18 +85,29 @@ export default class SecondRegform extends Component {
                                                 separateDialCode={true}
                                                 value={this.state.form.phone_number}
                                                 format={true}
-                                                onPhoneNumberChange={(a, value, b) => {value = value.replace(/\D/g,''); this.setState({form: this.props.updateValue(this.state.form, value, 'phone_number')})}}
+                                                onPhoneNumberChange={(a, value, b) => {
+                                                    value = value.replace(/\D/g, '');
+                                                    this.setState({form: this.props.updateValue(this.state.form, value, 'phone_number')})
+                                                }}
                                             />
                                         </div>
                                     </div>
-                                    <button onClick={this.sendData} className="submit sign-up">{languageManager.mainbuttonSubmit}</button>
+                                    <button onClick={this.sendData}
+                                            className="submit sign-up">{languageManager.mainbuttonSubmit}</button>
                                 </div> : <img src={logo} alt="loading" className="loading"/>
                         }
                     </div>
 
                 </div>)
 
-        } else { return <Redirect to={{ pathname: '/', search: this.props.location.search, state: this.state.form}}/> }
-
+        } else {
+            return (this.state.responseError) ?
+                <div className="response-error">
+                    <p>{this.state.responseError}</p>
+                    <Link to="/" className="submit sign-up"
+                          onClick={() => this.setState({loading: false})}>Ok</Link>
+                </div>
+                : <h1 style={{color: '#fff'}}>Bitcoin Revolution</h1>
+        }
     }
 }

@@ -11,7 +11,7 @@ ReactDOM.render(
     <BrowserRouter>
         <LpFramework
             resourceFile={require('./languages.json')}
-            funnel_name={"test"}>
+            funnel_name={"La Formule Francaise"}>
             <LpFrameworkWrapper Component={App}/>
         </LpFramework>
     </BrowserRouter>,

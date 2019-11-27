@@ -2129,6 +2129,22 @@ span.fb_ctime {
     margin: 0 auto;
 }
 
+.startFrom.center .response-error p {
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    border-top: 1px solid #cecece;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+.startFrom.center .response-error .submit.sign-up {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
 .startFrom h4 {
     color: #ffdb04;
     font-size: 23px;
