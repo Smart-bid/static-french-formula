@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import logo from '../Header/images/logo.png'
 import {Redirect} from 'react-router-dom'
 
-
-
 class FirstRegform extends Component {
     constructor(props) {
         super(props)
@@ -52,16 +50,6 @@ class FirstRegform extends Component {
                             </div>
                         </div>
                     </div>
-
-
-                    {/*<img src={logo} alt="logo" className="logo"/>*/}
-                    {/*<div className='inner'>*/}
-                    {/*    <div className='form-wrapper'>*/}
-                    {/*        {errorMsgs.map(arr => arr.map(error => <div key={error} className="errors">{error}</div>))}*/}
-                    {/*        {this.props.inputs.map(input => <input className={"inputfield " + input} key={input} type="text" name={input} onChange={(e) => this.setState({form: this.props.updateValue(this.state.form, e.target.value, input)})} placeholder={languageManager[input]} />)}*/}
-                    {/*        <button onClick={this.saveData} className='start'>{languageManager.button}</button>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             )
 
