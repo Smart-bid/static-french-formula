@@ -32,7 +32,7 @@ export default class SecondRegform extends Component {
         if (checkParams.success) this.setState({loading: true, errors: {}}, () => {
             this.props.setLeadData(form)
                 .then(this.props.handleSubmit)
-                .then(res => (res.redirectUrl) ? window.location = res.redirectUrl : this.setState({responseError: res.error}))
+                .then(res => (res.redirectUrl && res.success) ? window.location = res.redirectUrl : this.setState({responseError: res.error}))
         })
         else this.setState({errors: checkParams.errors, loading: false})
     }
