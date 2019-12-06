@@ -17,7 +17,6 @@ export default class TopSection extends Component {
             this.inputs = ['first_name', 'email'];
         }
     }
-
     render() {
         let languageManager = this.props.languageManager();
 
@@ -29,7 +28,7 @@ export default class TopSection extends Component {
                             <div className="col-lg-8">
                                 <div className="videoWrapper" id="how_it_works">
                                     <div className="embed-responsive embed-responsive-16by9">
-                                        <iframe
+                                        <iframe onClick={this.props.trackVideoPlay()}
                                             src="https://player.vimeo.com/video/360067406?title=0&amp;byline=0&amp;portrait=0&amp;transparent=0&amp;autoplay=1&amp;sidedock=0&amp;controls=0"
                                             width="100%" height="100%" frameBorder="0"></iframe>
                                     </div>

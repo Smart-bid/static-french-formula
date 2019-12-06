@@ -10,7 +10,7 @@ export default function Regform(props) {
             tempForm = form
         obj[key] = value
         Object.assign(tempForm, obj)
-
+        props.trackStartEdit()
         return tempForm
     }
 
